@@ -11,15 +11,15 @@ def append_with_limit(buff: list[int], item: int, n: int):
 
 class SystemInfo:
     def __init__(self):
-        self.update()
-    
-    def update(self):
         self.os: str = f"{platform.system()} {platform.release()}"
         self.processor: str = platform.processor()
         self.p_cpu_count: int = psutil.cpu_count(logical=False)
         self.l_cpu_count: int = psutil.cpu_count(logical=True)
         self.ram: int = psutil.virtual_memory().total
         self.partitions: list[str] = [partition.device for partition in psutil.disk_partitions()]
+        self.update()
+    
+    def update(self):
         self.cpu_load: int = psutil.cpu_percent(interval=1)
         self.ram_load: int = psutil.virtual_memory().percent
 
